@@ -1,0 +1,37 @@
+name: Reusable Deployment
+on: 
+  workflow_call:
+    inputs:
+      image_tag:
+        required: true
+        type: string
+      environment:
+        required: false
+        type: string
+        default: staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Configure doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+
+      - name: Get Kubeconfig
+        run: |
+          doctl kubernetes cluster kubeconfig show \
+            ${{ vars.CLUSTER_NAME }} > kubeconfig.yaml
+
+      - name: Helm Deployment
+        run: |
+          helm upgrade --install nginx-app ./helm/nginx-app \
+            --namespace ${{ inputs.environment }} \
+            --set image.tag=${{ inputs.image_tag }} \
+            --kubeconfig kubeconfig.yaml \
+            --atomic \
+            --timeout 5m

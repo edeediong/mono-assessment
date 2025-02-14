@@ -1,0 +1,34 @@
+### Terraform ###
+.terraform/          # Local Terraform cache
+*.tfstate            # State files
+*.tfstate.backup     # Old state backups
+*.tfvars             # Variable files (may contain secrets)
+.terraform.lock.hcl  # Lock file (controversial - some commit this)
+terraform.tfvars
+terraform/*.tfvars
+
+### Docker/Kubernetes ###
+kubeconfig.yaml      # Dynamically generated kubeconfig
+Dockerfile~          # Temp editor files
+.dockerignore        # Not needed here but common to ignore
+docker-compose.yml   # If accidentally created
+
+### Editor/IDE ###
+.vscode/             # VS Code config
+.idea/               # JetBrains IDE
+*.swp                # Vim swap files
+*.swo                # Vim swap files
+*.bak                # Backup files
+
+### OS Generated ###
+.DS_Store            # macOS folder metadata
+Thumbs.db            # Windows thumbnail cache
+*.tmp                # Temporary files
+*.log                # Log files
+
+### Build Artifacts ###
+bin/                 # Compiled binaries
+vendor/              # Dependency directories
+node_modules/        # Node.js (if any JS tooling)
+__pycache__/         # Python cache
+*.pyc                # Python compiled files

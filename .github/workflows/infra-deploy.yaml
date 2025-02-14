@@ -1,0 +1,32 @@
+name: Deploy Infrastructure
+on:
+  push:
+    paths:
+      - 'terraform/**'
+    branches: [main]
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Terraform Init
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+        env:
+          TF_ACTION_WORKSPACE: default
+
+      - name: Configure AWS CLI for Spaces
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.SPACES_ACCESS_KEY }} 
+          aws configure set aws_secret_access_key ${{ secrets.SPACES_SECRET_KEY }}
+          aws configure set default.region us-east-1
+          aws configure set default.s3.endpoint_url https://ams3.digitaloceanspaces.com
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        env:
+          TF_VAR_do_token: ${{ secrets.DO_TOKEN }}
