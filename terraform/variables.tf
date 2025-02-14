@@ -20,7 +20,7 @@ variable "region" {
 variable "k8s_version" {
   description = "Kubernetes version being used"
   type        = string
-  default     = "1.32.1-do."
+  default     = "1.32.1-do"
 }
 
 variable "node_pool_size" {
