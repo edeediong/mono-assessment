@@ -23,7 +23,6 @@ provider "digitalocean" {
   token = var.do_token
 }
 
-
 resource "digitalocean_kubernetes_cluster" "mono_cluster" {
   name    = var.cluster_name
   region  = var.region
