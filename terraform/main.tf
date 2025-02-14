@@ -7,10 +7,13 @@ terraform {
   }
 
   backend "s3" {
-    endpoint = "https://nyc3.digitaloceanspaces.com"
     region   = "us-east-1"
     key      = "terraform.tfstate"
     bucket   = "mono-terraform-state"
+
+    endpoints {
+      s3      = "https://nyc3.digitaloceanspaces.com"
+    }
 
     skip_credentials_validation = true
   }

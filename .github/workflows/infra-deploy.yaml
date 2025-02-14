@@ -30,18 +30,10 @@ jobs:
 
       - name: Terraform Init
         env:
-          TF_BACKEND_CONFIG: |
-            bucket = "mono-terraform-state"
-            key = "terraform.tfstate"
-            region = "us-east-1"
-            endpoint = "nyc3.digitaloceanspaces.com"
-            skip_credentials_validation = true
-            skip_metadata_api_check = true
-            force_path_style = true
+          AWS_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
         run: |
-          terraform init \
-            -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY }}" \
-            -backend-config="secret_key=${{ secrets.SPACES_SECRET_KEY }}"
+          terraform init
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
