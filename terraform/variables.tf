@@ -16,6 +16,7 @@ variable "region" {
   default     = "nyc1"
 }
 
+
 variable "k8s_version" {
   description = "Kubernetes version being used"
   type        = string
