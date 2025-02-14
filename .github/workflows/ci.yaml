@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write  # Critical for GHCR access
     outputs:
       image_tag: ${{ steps.tag.outputs.git_sha }}
     steps:
