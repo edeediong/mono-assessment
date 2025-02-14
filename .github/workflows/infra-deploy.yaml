@@ -29,14 +29,19 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
-        run: terraform init
         env:
           TF_BACKEND_CONFIG: |
             bucket = "mono-terraform-state"
-            key    = "terraform.tfstate"
+            key = "terraform.tfstate"
             region = "us-east-1"
             endpoint = "nyc3.digitaloceanspaces.com"
             skip_credentials_validation = true
+            skip_metadata_api_check = true
+            force_path_style = true
+        run: |
+          terraform init \
+            -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY }}" \
+            -backend-config="secret_key=${{ secrets.SPACES_SECRET_KEY }}"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve

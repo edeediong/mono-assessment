@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    endpoint = "nyc3.digitaloceanspaces.com"
+    endpoint = "https://nyc3.digitaloceanspaces.com"
     region   = "us-east-1"
     key      = "terraform.tfstate"
     bucket   = "mono-terraform-state"
