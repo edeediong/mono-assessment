@@ -8,16 +8,12 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
     environment: production
     steps:
       - uses: actions/checkout@v4
-
-      - name: Terraform Init
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_wrapper: false
-        env:
-          TF_ACTION_WORKSPACE: default
 
       - name: Configure Spaces
         env:
@@ -28,6 +24,19 @@ jobs:
           aws configure set aws_secret_access_key $SPACES_SECRET
           aws configure set default.region us-east-1
           aws configure set default.s3.endpoint_url https://nyc3.digitaloceanspaces.com
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        run: terraform init
+        env:
+          TF_BACKEND_CONFIG: |
+            bucket = "mono-terraform-state"
+            key    = "terraform.tfstate"
+            region = "us-east-1"
+            endpoint = "nyc3.digitaloceanspaces.com"
+            skip_credentials_validation = true
 
       - name: Terraform Apply
         run: terraform apply -auto-approve

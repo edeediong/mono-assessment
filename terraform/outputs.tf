@@ -4,7 +4,7 @@ output "cluster_id" {
 }
 
 output "cluster_endpoint" {
-  description = "DOKS API endpoint"
+  description = "DOKS API endpoint."
   value       = digitalocean_kubernetes_cluster.mono_cluster.endpoint
 }
 
