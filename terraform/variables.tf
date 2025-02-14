@@ -17,7 +17,7 @@ variable "region" {
 }
 
 variable "k8s_version" {
-  description = "Kubernetes version"
+  description = "Kubernetes version being used"
   type        = string
   default     = "1.29.1-do.0"
 }
