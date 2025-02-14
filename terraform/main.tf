@@ -11,7 +11,7 @@ terraform {
     key      = "terraform.tfstate"
     bucket   = "mono-terraform-state"
 
-    endpoints {
+    endpoints = {
       s3      = "https://nyc3.digitaloceanspaces.com"
     }
 

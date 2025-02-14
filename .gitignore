@@ -1,34 +1,111 @@
-### Terraform ###
-.terraform/          # Local Terraform cache
-*.tfstate            # State files
-*.tfstate.backup     # Old state backups
-*.tfvars             # Variable files (may contain secrets)
-.terraform.lock.hcl  # Lock file (controversial - some commit this)
-terraform.tfvars
-terraform/*.tfvars
+# ======================================
+# Terraform
+# ======================================
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.backup
+**/*.tfvars
+**/*.tfvars.json
+**/.terraform.lock.hcl
+**/terraform.rc
 
-### Docker/Kubernetes ###
-kubeconfig.yaml      # Dynamically generated kubeconfig
-Dockerfile~          # Temp editor files
-.dockerignore        # Not needed here but common to ignore
-docker-compose.yml   # If accidentally created
+# ======================================
+# Docker/Kubernetes
+# ======================================
+**/kubeconfig.yaml
+**/kubeconfig_*
+**/Dockerfile~
+**/.dockerignore
+**/docker-compose.yml
+**/docker-compose.override.yml
+**/.kube/
 
-### Editor/IDE ###
-.vscode/             # VS Code config
-.idea/               # JetBrains IDE
-*.swp                # Vim swap files
-*.swo                # Vim swap files
-*.bak                # Backup files
+# ======================================
+# Editor/IDE
+# ======================================
+**/.vscode/
+**/.idea/
+**/.ropeproject/
+**/.history/
+**/*.swp
+**/*.swo
+**/*.sublime-*
+**/.vs/
+**/.ntvs*
+**/.njsproj
+**/.sln
 
-### OS Generated ###
-.DS_Store            # macOS folder metadata
-Thumbs.db            # Windows thumbnail cache
-*.tmp                # Temporary files
-*.log                # Log files
+# ======================================
+# OS Generated (cross-platform)
+# ======================================
+**/.DS_Store
+**/Thumbs.db
+**/Desktop.ini
+**/ehthumbs.db
+**/.Spotlight-V100
+**/.Trash-*
+**/.nfs*
+**/~$*
 
-### Build Artifacts ###
-bin/                 # Compiled binaries
-vendor/              # Dependency directories
-node_modules/        # Node.js (if any JS tooling)
-__pycache__/         # Python cache
-*.pyc                # Python compiled files
+# ======================================
+# Build Artifacts & Dependencies
+# ======================================
+**/bin/
+**/build/
+**/dist/
+**/out/
+**/target/
+**/vendor/
+**/node_modules/
+**/jspm_packages/
+**/bower_components/
+**/.yarn/
+**/.pnp*
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.class
+**/*.o
+**/*.a
+**/*.so
+**/*.dll
+**/*.exe
+
+# ======================================
+# Logs & Temp Files
+# ======================================
+**/*.log
+**/*.log.*
+**/*.tmp
+**/*.temp
+**/.temp/
+**/temp/
+
+# ======================================
+# Environment Files
+# ======================================
+**/.env
+**/.env.*
+**/local.properties
+**/secrets.yml
+
+# ======================================
+# Testing & Coverage
+# ======================================
+**/coverage/
+**/.coverage
+**/htmlcov/
+**/.pytest_cache/
+**/junit.xml
+**/test-results/
+
+# ======================================
+# Project-Specific
+# ======================================
+# Add any project-specific patterns below
+**/.cache/
+**/.next/
+**/.nuxt/
+**/.output/
+**/.serverless/
