@@ -25,12 +25,13 @@ jobs:
       - name: Get Kubeconfig
         run: |
           doctl kubernetes cluster kubeconfig show \
-            ${{ vars.CLUSTER_NAME }} > kubeconfig.yaml
+            ${{ vars.cluster_name }} > kubeconfig.yaml
 
       - name: Helm Deployment
         run: |
           helm upgrade --install nginx-app ./helm/nginx-app \
             --namespace ${{ inputs.environment }} \
+            --set image.repository=ghcr.io/${{ github.repository_owner }}/mono-assessment \
             --set image.tag=${{ inputs.image_tag }} \
             --kubeconfig kubeconfig.yaml \
             --atomic \

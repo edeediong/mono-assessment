@@ -12,7 +12,6 @@ jobs:
     defaults:
       run:
         working-directory: terraform
-    environment: production
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
@@ -30,3 +29,4 @@ jobs:
         run: terraform apply -auto-approve
         env:
           TF_VAR_do_token: ${{ secrets.DO_TOKEN }}
+          TF_VAR_cluster_name: ${{ vars.CLUSTER_NAME }}
