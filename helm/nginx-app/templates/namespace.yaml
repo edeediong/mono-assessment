@@ -1,7 +1,0 @@
-{{- if not (lookup "v1" "Namespace" "" (.Release.Namespace | default "staging")) }}
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: {{ .Release.Namespace | default "staging" }}
-{{- end }}
-
