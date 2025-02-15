@@ -1,4 +1,4 @@
-{{- if not (.Release.Namespace | default "staging" | lookup "v1" "Namespace" "" "") }}
+{{- if not (lookup "v1" "Namespace" "" (.Release.Namespace | default "staging")) }}
 apiVersion: v1
 kind: Namespace
 metadata:
