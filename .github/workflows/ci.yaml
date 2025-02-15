@@ -5,6 +5,7 @@ on:
       - 'html/**'
       - 'Dockerfile'
       - '.github/workflows/ci.yaml'
+      - 'helm/**'
 
 jobs:
   build:
