@@ -26,7 +26,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
         env:
           TF_VAR_do_token: ${{ secrets.DO_TOKEN }}
           TF_VAR_cluster_name: ${{ vars.CLUSTER_NAME }}
